@@ -1,5 +1,6 @@
 package com.sg.superhero.dao;
 
+import com.sg.superhero.dto.Org;
 import com.sg.superhero.dto.Person;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class SuperheroDaoDBImplTest {
     @Autowired
     SuperheroDaoDBImpl dao;
 
+
+    // PERSON TEST
     @Test
     void testAddPerson(){
         Person person = new Person();
@@ -117,6 +120,85 @@ public class SuperheroDaoDBImplTest {
         List<Person> people = dao.getAllPeople();
 
         assertEquals(0, people.size());
+    }
+
+
+    //ORG TEST
+    @Test
+    void testAddOrg(){
+        Org org = new Org();
+        org.setName("League of Villains");
+        org.setDescription("MHA");
+        org.setLocationId(1);
+
+        Org fromDao = dao.addOrg(org);
+        org.setId(2);
+        assertEquals(org, fromDao);
+    }
+
+    @Test
+    void testGetOrgById(){
+        Org org = new Org();
+        org.setName("League of Villains");
+        org.setDescription("MHA");
+        org.setLocationId(1);
+        dao.addOrg(org);
+        org.setId(2);
+
+        Org fromDao = dao.getOrgById(2);
+        assertEquals(org, fromDao);
+    }
+
+    @Test
+    void testGetAllOrgs(){
+        Org org = new Org();
+        org.setName("League of Villains");
+        org.setDescription("MHA");
+        org.setLocationId(1);
+        dao.addOrg(org);
+        org.setId(2);
+
+        List<Org> orgs = dao.getAllOrgs();
+        assertEquals(2, orgs.size());
+        assertEquals(org, orgs.get(1));
+    }
+
+    @Test
+    void testGetAllOrgByPerson(){
+        //TODO implement after member methods
+    }
+
+    @Test
+    void testUpdateOrg(){
+        Org org = new Org();
+        org.setName("League of Villains");
+        org.setDescription("MHA");
+        org.setLocationId(1);
+        dao.addOrg(org);
+        org.setId(2);
+
+        org.setName("Avengers");
+        org.setDescription("Marvel");
+        assertTrue(dao.updateOrg(org));
+
+        Org fromDao = dao.getOrgById(2);
+        assertEquals(org, fromDao);
+    }
+
+    @Test
+    void testDeleteOrg(){
+        Org org = new Org();
+        org.setName("League of Villains");
+        org.setDescription("MHA");
+        org.setLocationId(1);
+        dao.addOrg(org);
+        org.setId(2);
+
+        assertTrue(dao.deleteOrg(org));
+
+        List<Org> orgs = dao.getAllOrgs();
+
+        assertEquals(1, orgs.size());
     }
 
 

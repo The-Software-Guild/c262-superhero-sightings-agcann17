@@ -57,32 +57,32 @@ public class SuperheroDaoDBImpl implements SuperheroDao{
     //Org
     @Override
     public Org addOrg(Org org) {
-        return null;
+        return OrgHelper.addOrg(org, jdbcTemplate);
     }
 
     @Override
     public Org getOrgById(int id) {
-        return null;
+        return OrgHelper.getOrgById(id, jdbcTemplate);
     }
 
     @Override
     public List<Org> getAllOrgs() {
-        return null;
+        return OrgHelper.getAllOrgs(jdbcTemplate);
     }
 
     @Override
     public List<Org> getAllOrgByPerson(int personId) {
-        return null;
+        return OrgHelper.getAllOrgByPerson(personId, jdbcTemplate);
     }
 
     @Override
     public boolean updateOrg(Org org) {
-        return false;
+        return OrgHelper.updateOrg(org, jdbcTemplate);
     }
 
     @Override
     public boolean deleteOrg(Org org) {
-        return false;
+        return OrgHelper.deleteOrg(org, jdbcTemplate);
     }
 
 
