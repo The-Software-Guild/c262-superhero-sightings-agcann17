@@ -89,32 +89,32 @@ public class SuperheroDaoDBImpl implements SuperheroDao{
     //Location
     @Override
     public Location addLocation(Location loc) {
-        return null;
+        return LocationHelper.addLocation(loc, jdbcTemplate);
     }
 
     @Override
     public Location getLocationById(int id) {
-        return null;
+        return LocationHelper.getLocationById(id, jdbcTemplate);
     }
 
     @Override
     public List<Location> getAllLocations() {
-        return null;
+        return LocationHelper.getAllLocations(jdbcTemplate);
     }
 
     @Override
     public List<Location> getAllLocationsByPerson(int personId) {
-        return null;
+        return LocationHelper.getAllLocationsByPerson(personId, jdbcTemplate);
     }
 
     @Override
     public boolean updateLocation(Location loc) {
-        return false;
+        return LocationHelper.updateLocation(loc, jdbcTemplate);
     }
 
     @Override
     public boolean deleteLocation(Location loc) {
-        return false;
+        return LocationHelper.deleteLocation(loc, jdbcTemplate);
     }
 
 

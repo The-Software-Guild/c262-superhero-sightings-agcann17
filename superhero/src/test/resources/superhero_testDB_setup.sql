@@ -47,6 +47,7 @@ CREATE TABLE person(
     constraint foreign key (villainHero) references villainHero(id)
 );
 
+
 CREATE TABLE sighting(
 	person INT NOT NULL,
     location INT NOT NULL,
@@ -61,3 +62,5 @@ CREATE TABLE members(
     constraint foreign key (person) references person(id),
     constraint foreign key (org) references org(id)
 );
+
+SELECT * FROM location;
