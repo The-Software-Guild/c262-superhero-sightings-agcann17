@@ -7,7 +7,7 @@ public class Person {
     private int id;
     private String name;
     private String description;
-    private String villainHero;
+    private int villainHeroId;
     private int superpowerId;
 
     public int getId() {
@@ -34,12 +34,12 @@ public class Person {
         this.description = description;
     }
 
-    public String getVillainHero() {
-        return villainHero;
+    public int getVillainHero() {
+        return villainHeroId;
     }
 
-    public void setVillainHero(String villainHero) {
-        this.villainHero = villainHero;
+    public void setVillainHero(int villainHeroId) {
+        this.villainHeroId = villainHeroId;
     }
 
     public int getSuperpowerId() {
@@ -56,7 +56,7 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return superpowerId == person.superpowerId && Objects.equals(name, person.name) && Objects.equals(villainHero, person.villainHero);
+        return superpowerId == person.superpowerId && Objects.equals(name, person.name) && villainHeroId == person.villainHeroId;
     }
 
     @Override
