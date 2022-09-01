@@ -11,13 +11,13 @@ import java.util.List;
 public class PersonHelper {
 
     public static Person addPerson(Person person, JdbcTemplate jdbcTemplate) {
-        final String sql = "INSERT INTO round(name, description, superpower, villainHero) " +
+        final String sql = "INSERT INTO person(name, description, superpower, villainHero) " +
                 "VALUES(?, ?, ?, ?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update((Connection conn) -> {
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setTimestamp(1, Timestamp.valueOf(person.getName()));
+            statement.setString(1, person.getName());
             statement.setString(2, person.getDescription());
             statement.setInt(3, person.getSuperpowerId());
             statement.setInt(4, person.getVillainHero());
@@ -37,7 +37,7 @@ public class PersonHelper {
     }
 
     public static List<Person> getAllPeople(JdbcTemplate jdbcTemplate) {
-        final String sql = "SELECT * FROM game;";
+        final String sql = "SELECT * FROM person;";
         return jdbcTemplate.query(sql, new PersonMapper());
     }
 
@@ -60,7 +60,8 @@ public class PersonHelper {
                 person.getName(),
                 person.getDescription(),
                 person.getSuperpowerId(),
-                person.getVillainHero());
+                person.getVillainHero(),
+                person.getId());
 
         return true;
     }

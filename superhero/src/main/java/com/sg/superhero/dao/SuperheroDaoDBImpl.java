@@ -1,13 +1,21 @@
 package com.sg.superhero.dao;
 
 import com.sg.superhero.dto.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class SuperheroDaoDBImpl implements SuperheroDao{
 
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public SuperheroDaoDBImpl(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     //Person
     @Override
@@ -160,6 +168,33 @@ public class SuperheroDaoDBImpl implements SuperheroDao{
 
     @Override
     public boolean deleteSighting(Sighting sighting) {
+        return false;
+    }
+
+    @Override
+    public Member addMember(Member member) {
+        return null;
+    }
+
+
+    //Members
+    @Override
+    public Member getMemberById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Member> getAllMembers() {
+        return null;
+    }
+
+    @Override
+    public boolean updateMember(Member member) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteMember(Member member) {
         return false;
     }
 }
