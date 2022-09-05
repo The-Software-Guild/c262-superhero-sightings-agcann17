@@ -44,16 +44,14 @@ public interface SuperheroDao {
 
     //Sighting related methods
     public Sighting addSighting(Sighting sighting);
-    public Sighting getSightingById(int id);
+    public Sighting getSightingById(int personId, int locId);
     public List<Sighting> getAllSightings();
     public boolean updateSighting(Sighting sighting);
     public boolean deleteSighting(Sighting sighting);
 
     //Member related methods
     public Member addMember(Member member);
-    public Member getMemberById(int id);
     public List<Member> getAllMembers();
-    public boolean updateMember(Member member);
     public boolean deleteMember(Member member);
 
 }

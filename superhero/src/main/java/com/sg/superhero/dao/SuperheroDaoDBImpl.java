@@ -121,80 +121,70 @@ public class SuperheroDaoDBImpl implements SuperheroDao{
     //Superpower
     @Override
     public Superpower addSuperpower(Superpower sp) {
-        return null;
+        return SuperpowerHelper.addSuperpower(sp, jdbcTemplate);
     }
 
     @Override
     public Superpower getSuperpowerById(int id) {
-        return null;
+        return SuperpowerHelper.getSuperpowerById(id, jdbcTemplate);
     }
 
     @Override
     public List<Superpower> getAllSuperpowers() {
-        return null;
+        return SuperpowerHelper.getAllSuperpowers(jdbcTemplate);
     }
 
     @Override
     public boolean updateSuperpower(Superpower sp) {
-        return false;
+        return SuperpowerHelper.updateSuperpower(sp, jdbcTemplate);
     }
 
     @Override
     public boolean deleteSuperpower(Superpower sp) {
-        return false;
+        return SuperpowerHelper.deleteSuperpower(sp, jdbcTemplate);
     }
 
 
     //Sighting
     @Override
     public Sighting addSighting(Sighting sighting) {
-        return null;
+        return SightingHelper.addSighting(sighting, jdbcTemplate);
     }
 
     @Override
-    public Sighting getSightingById(int id) {
-        return null;
+    public Sighting getSightingById(int personId, int locId) {
+        return SightingHelper.getSightingById(personId, locId, jdbcTemplate);
     }
 
     @Override
     public List<Sighting> getAllSightings() {
-        return null;
+        return SightingHelper.getAllSightings(jdbcTemplate);
     }
 
     @Override
     public boolean updateSighting(Sighting sighting) {
-        return false;
+        return SightingHelper.updateSighting(sighting, jdbcTemplate);
     }
 
     @Override
     public boolean deleteSighting(Sighting sighting) {
-        return false;
-    }
-
-    @Override
-    public Member addMember(Member member) {
-        return null;
+        return SightingHelper.deleteSighting(sighting, jdbcTemplate);
     }
 
 
     //Members
     @Override
-    public Member getMemberById(int id) {
-        return null;
+    public Member addMember(Member member) {
+        return MemberHelper.addMember(member, jdbcTemplate);
     }
 
     @Override
     public List<Member> getAllMembers() {
-        return null;
-    }
-
-    @Override
-    public boolean updateMember(Member member) {
-        return false;
+        return MemberHelper.getAllMembers(jdbcTemplate);
     }
 
     @Override
     public boolean deleteMember(Member member) {
-        return false;
+        return MemberHelper.deleteMember(member, jdbcTemplate);
     }
 }

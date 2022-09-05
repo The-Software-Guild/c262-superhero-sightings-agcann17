@@ -55,6 +55,7 @@ CREATE TABLE sighting(
     constraint pk_sighting primary key (person, location)
 );
 
+
 CREATE TABLE members(
     person INT NOT NULL,
     org INT NOT NULL,
@@ -63,4 +64,3 @@ CREATE TABLE members(
     constraint foreign key (org) references org(id)
 );
 
-SELECT * FROM location;

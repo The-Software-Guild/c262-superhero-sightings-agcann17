@@ -1,13 +1,15 @@
 package com.sg.superhero.dao;
 
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.dto.Org;
-import com.sg.superhero.dto.Person;
+import com.sg.superhero.dto.*;
+import net.bytebuddy.implementation.bind.annotation.Super;
+import org.apache.tomcat.jni.Time;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -277,5 +279,232 @@ public class SuperheroDaoDBImplTest {
         assertEquals(1, locations.size());
     }
 
+
+    //SUPERPOWER TEST
+    @Test
+    void testAddSuperpower(){
+        Superpower sp = new Superpower();
+        sp.setSuperpower("Super Speed");
+        Superpower fromDao = dao.addSuperpower(sp);
+        sp.setId(2);
+
+        assertEquals(sp, fromDao);
+    }
+
+    @Test
+    void testGetSuperpowerById(){
+        Superpower sp = new Superpower();
+        sp.setSuperpower("Super Speed");
+        dao.addSuperpower(sp);
+        sp.setId(2);
+
+        Superpower fromDao = dao.getSuperpowerById(2);
+        assertEquals(sp, fromDao);
+    }
+
+    @Test
+    void testGetAllSuperpowers(){
+        Superpower sp = new Superpower();
+        sp.setSuperpower("Super Speed");
+        dao.addSuperpower(sp);
+        sp.setId(2);
+
+        List<Superpower> powers = dao.getAllSuperpowers();
+        assertEquals(2, powers.size());
+        assertEquals(sp, powers.get(1));
+    }
+
+    @Test
+    void testUpdateSuperpower(){
+        Superpower sp = new Superpower();
+        sp.setSuperpower("Super Speed");
+        dao.addSuperpower(sp);
+        sp.setId(2);
+
+        sp.setSuperpower("All for One");
+        assertTrue(dao.updateSuperpower(sp));
+
+        Superpower fromDao = dao.getSuperpowerById(2);
+        assertEquals(sp, fromDao);
+    }
+
+    @Test
+    void testDeleteSuperpower(){
+        Superpower sp = new Superpower();
+        sp.setSuperpower("Super Speed");
+        dao.addSuperpower(sp);
+        sp.setId(2);
+
+        assertTrue(dao.deleteSuperpower(sp));
+
+        List<Superpower> powers = dao.getAllSuperpowers();
+        assertEquals(1, powers.size());
+    }
+
+
+
+    //SIGHTING TEST
+    @Test
+    void testAddSighting(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        s.setPersonId(1);
+        s.setLocationId(2);
+        Sighting fromDao = dao.addSighting(s);
+
+        assertEquals(s, fromDao);
+    }
+
+    @Test
+    void testGetSightingById(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        Sighting fromDao = dao.getSightingById(1, 2);
+        assertEquals(s, fromDao);
+    }
+
+    @Test
+    void testGetAllSightings(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        List<Sighting> list = dao.getAllSightings();
+        assertEquals(1, list.size());
+        assertEquals(s, list.get(0));
+    }
+
+    @Test
+    void testUpdateSighting(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Person p2 = new Person();
+        p2.setName("TEST");
+        p2.setDescription("TEST");
+        p2.setVillainHero(1);
+        p2.setSuperpowerId(1);
+        dao.addPerson(p2);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        LocalDateTime dt = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        s.setDate(dt);
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        Sighting s2 = new Sighting();
+        s2.setDate(dt);
+        s2.setPersonId(2);
+        s2.setLocationId(1);
+        dao.addSighting(s2);
+
+        //Sighting fromDao2 = dao.getSightingById(1, 2);
+
+        s.setDate(s.getDate().plusYears(1));
+        assertTrue(dao.updateSighting(s));
+
+
+        Sighting fromDao = dao.getSightingById(1, 2);
+        List<Sighting> list = dao.getAllSightings();
+
+        assertEquals(s, fromDao);
+    }
+
+    @Test
+    void testDeleteSighting(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        LocalDateTime dt = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        s.setDate(dt);
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        assertTrue(dao.deleteSighting(s));
+        List<Sighting> list = dao.getAllSightings();
+
+        assertEquals(0, list.size());
+
+    }
+
+
+    //MEMBER TEST
+    @Test
+    void testAddMember(){
+
+    }
+
+    @Test
+    void testGetAllMembers(){
+
+    }
+
+    @Test
+    void testDeleteMember(){
+
+    }
 
 }
