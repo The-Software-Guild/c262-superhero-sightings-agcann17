@@ -124,7 +124,7 @@ public class PersonHelper {
     }
 
 
-    private static final class PersonMapper implements RowMapper<Person> {
+    public static final class PersonMapper implements RowMapper<Person> {
 
         @Override
         public Person mapRow(ResultSet rs, int index) throws SQLException {

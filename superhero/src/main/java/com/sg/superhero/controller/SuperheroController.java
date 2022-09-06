@@ -2,11 +2,9 @@ package com.sg.superhero.controller;
 
 import com.sg.superhero.dao.SuperheroDao;
 import com.sg.superhero.dao.SuperheroDaoDBImpl;
-import com.sg.superhero.dto.Location;
-import com.sg.superhero.dto.Org;
-import com.sg.superhero.dto.Person;
-import com.sg.superhero.dto.Superpower;
+import com.sg.superhero.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 //http://localhost:8080/superhero
@@ -263,5 +264,73 @@ public class SuperheroController {
         return "redirect:/organizations";
     }
 
+    /**
+     * Sighting CRUD
+     */
+    @GetMapping("sightings")
+    public String displaySighting(Model model){
+        List<Sighting> sightings = dao.getAllSightings();
+        List<Person> people = dao.getAllPeople();
+        List<Location> locations = dao.getAllLocations();
+        model.addAttribute("sightings", sightings);
+        model.addAttribute("people", people);
+        model.addAttribute("locations", locations);
+
+        return "sightings";
+    }
+
+    @PostMapping("addSighting")
+    public String addSighting(HttpServletRequest request) {
+        int person = Integer.parseInt(request.getParameter("person"));
+        int location = Integer.parseInt(request.getParameter("location"));
+        LocalDateTime date = LocalDateTime.now();
+
+        Sighting sighting = new Sighting();
+        sighting.setPersonId(person);
+        sighting.setLocationId(location);
+        sighting.setDate(date);
+
+        dao.addSighting(sighting);
+
+        return "redirect:/sightings";
+    }
+
+    @GetMapping("deleteSighting")
+    public String deleteSighting(HttpServletRequest request) {
+        int personId = Integer.parseInt(request.getParameter("personId"));
+        int locationId = Integer.parseInt(request.getParameter("locationId"));
+        Sighting sighting = dao.getSightingById(personId, locationId);
+        dao.deleteSighting(sighting);
+
+        return "redirect:/sightings";
+    }
+
+    @GetMapping("editSighting")
+    public String editSighting(HttpServletRequest request, Model model) {
+        int personId = Integer.parseInt(request.getParameter("personId"));
+        int locationId = Integer.parseInt(request.getParameter("locationId"));
+
+        Sighting sighting = dao.getSightingById(personId, locationId);
+
+        model.addAttribute("sighting", sighting);
+        return "editSighting";
+    }
+
+    @PostMapping("editSighting")
+    public String performEditSighting(HttpServletRequest request) {
+        int personId = Integer.parseInt(request.getParameter("personId"));
+        int locationId = Integer.parseInt(request.getParameter("locationId"));
+
+        Sighting sighting = dao.getSightingById(personId, locationId);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(request.getParameter("date"), formatter);
+        LocalDateTime dateTime = date.atStartOfDay();
+        sighting.setDate(dateTime);
+
+        dao.updateSighting(sighting);
+
+        return "redirect:/sightings";
+    }
 
 }

@@ -2,6 +2,7 @@ package com.sg.superhero.dao;
 
 import com.sg.superhero.dto.Person;
 import com.sg.superhero.dto.Sighting;
+import com.sg.superhero.dto.Superpower;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -32,12 +33,21 @@ public class SightingHelper {
     public static Sighting getSightingById(int personId, int locId, JdbcTemplate jdbcTemplate) {
         final String sql = "SELECT person, location, date " +
                 "FROM sighting WHERE person = ? AND location = ?;";
-        return jdbcTemplate.queryForObject(sql, new SightingMapper(), personId, locId);
+        Sighting s = jdbcTemplate.queryForObject(sql, new SightingMapper(), personId, locId);
+        addPersonToSighting(s, jdbcTemplate);
+
+        return s;
     }
 
     public static List<Sighting> getAllSightings(JdbcTemplate jdbcTemplate) {
         final String sql = "SELECT * FROM sighting;";
-        return jdbcTemplate.query(sql, new SightingMapper());
+        List<Sighting> sightings = jdbcTemplate.query(sql, new SightingMapper());
+
+        for(Sighting s: sightings){
+            addPersonToSighting(s, jdbcTemplate);
+        }
+
+        return sightings;
     }
 
     public static boolean updateSighting(Sighting sighting, JdbcTemplate jdbcTemplate) {
@@ -55,6 +65,13 @@ public class SightingHelper {
         jdbcTemplate.update(DELETE_SIGHTING, sighting.getPersonId(), sighting.getLocationId());
 
         return true;
+    }
+
+    private static void addPersonToSighting(Sighting s, JdbcTemplate jdbcTemplate){
+        final String sql = "SELECT id, name, description, superpower, villainHero FROM person WHERE id = ?;";
+        Person person = jdbcTemplate.queryForObject(sql, new PersonHelper.PersonMapper(), s.getPersonId());
+
+        s.setPersonName(person.getName());
     }
 
     private static final class SightingMapper implements RowMapper<Sighting> {

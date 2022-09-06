@@ -1,5 +1,7 @@
 package com.sg.superhero.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,7 +9,9 @@ public class Sighting {
 
     private int locationId;
     private int personId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime date;
+    private String personName;
 
     public int getLocationId() {
         return locationId;
@@ -31,6 +35,14 @@ public class Sighting {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     @Override
