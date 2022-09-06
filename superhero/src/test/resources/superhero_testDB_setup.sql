@@ -56,7 +56,7 @@ CREATE TABLE sighting(
 );
 
 
-CREATE TABLE members(
+CREATE TABLE member(
     person INT NOT NULL,
     org INT NOT NULL,
     constraint pk_memeber primary key (person, org),

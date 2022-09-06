@@ -9,6 +9,8 @@ public class Person {
     private String description;
     private int villainHeroId;
     private int superpowerId;
+    private String superpower;
+    private String villainHero;
 
     public int getId() {
         return id;
@@ -34,11 +36,11 @@ public class Person {
         this.description = description;
     }
 
-    public int getVillainHero() {
+    public int getVillainHeroId() {
         return villainHeroId;
     }
 
-    public void setVillainHero(int villainHeroId) {
+    public void setVillainHeroId(int villainHeroId) {
         this.villainHeroId = villainHeroId;
     }
 
@@ -48,6 +50,22 @@ public class Person {
 
     public void setSuperpowerId(int superpowerId) {
         this.superpowerId = superpowerId;
+    }
+
+    public String getSuperpower() {
+        return superpower;
+    }
+
+    public void setSuperpower(String superpower) {
+        this.superpower = superpower;
+    }
+
+    public String getVillainHero() {
+        return villainHero;
+    }
+
+    public void setVillainHero(String villainHero) {
+        this.villainHero = villainHero;
     }
 
     //Two heroes are equal if they have the same name and superpower

@@ -58,7 +58,7 @@ public class SuperpowerHelper {
         return true;
     }
 
-    private static final class SuperpowerMapper implements RowMapper<Superpower> {
+    public static final class SuperpowerMapper implements RowMapper<Superpower> {
 
         @Override
         public Superpower mapRow(ResultSet rs, int index) throws SQLException {

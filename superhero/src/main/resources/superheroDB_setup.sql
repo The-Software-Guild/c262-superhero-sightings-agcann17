@@ -29,8 +29,9 @@ CREATE TABLE villainHero(
     label VARCHAR(30) NOT NULL
 );
 
-INSERT INTO villainHero(label) VALUES ("superhero");
-INSERT INTO villainHero(label) VALUES ("supervillain");
+INSERT INTO villainHero(label) VALUES ("Super Hero");
+INSERT INTO villainHero(label) VALUES ("Super Villain");
+INSERT INTO superpower(superpower) VALUES ("Flight");
 
 CREATE TABLE person(
 	id INT PRIMARY KEY auto_increment,
@@ -49,10 +50,12 @@ CREATE TABLE sighting(
     constraint pk_sighting primary key (person, location)
 );
 
-CREATE TABLE members(
+CREATE TABLE member(
     person INT NOT NULL,
     org INT NOT NULL,
-    constraint pk_memeber primary key (person, org),
+    constraint pk_member primary key (person, org),
     constraint foreign key (person) references person(id),
     constraint foreign key (org) references org(id)
 );
+
+INSERT INTO person(name, description, superpower, villainHero)  VALUES ("Superman", "Clark Kent", 1, 1);

@@ -83,12 +83,53 @@ public class SuperheroDaoDBImplTest {
 
     @Test
     void testGetAllPeopleByOrg(){
-        //TODO once I have addMember method implemented
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        person = dao.addPerson(person);
+
+
+        Org org = new Org();
+        org.setName("Justice League");
+        org.setDescription("A Lot of heroes.");
+        org.setLocationId(1);
+        org = dao.addOrg(org);
+
+        Member m = new Member();
+        m.setOrgId(org.getId());
+        m.setPersonId(person.getId());
+        dao.addMember(m);
+        List<Person> list = dao.getAllPeopleByOrg(2);
+
+        assertEquals(1, list.size());
+        assertEquals(person, list.get(0));
     }
 
     @Test
     void testGetAllPeopleByLocation(){
-        //TODO once I have addSighting method implemented
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude((float)3.333);
+        loc.setLongitude((float)4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        List<Person> list = dao.getAllPeopleByLocation(2);
+        assertEquals(1, list.size());
+        assertEquals(person, list.get(0));
     }
 
     @Test
@@ -168,7 +209,28 @@ public class SuperheroDaoDBImplTest {
 
     @Test
     void testGetAllOrgByPerson(){
-        //TODO implement after addMember methods
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        person = dao.addPerson(person);
+
+
+        Org org = new Org();
+        org.setName("Justice League");
+        org.setDescription("A Lot of heroes.");
+        org.setLocationId(1);
+        org = dao.addOrg(org);
+
+        Member m = new Member();
+        m.setOrgId(org.getId());
+        m.setPersonId(person.getId());
+        dao.addMember(m);
+        List<Org> list = dao.getAllOrgByPerson(1);
+
+        assertEquals(1, list.size());
+        assertEquals(org, list.get(0));
     }
 
     @Test
@@ -246,7 +308,27 @@ public class SuperheroDaoDBImplTest {
 
     @Test
     void testGetAllLocationsByPerson(){
-        //TODO implement after addSighting method
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        dao.addPerson(person);
+
+        Location loc = new Location();
+        loc.setLatitude(3.333);
+        loc.setLongitude(4.444);
+        dao.addLocation(loc);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        s.setPersonId(1);
+        s.setLocationId(2);
+        dao.addSighting(s);
+
+        List<Location> list = dao.getAllLocationsByPerson(1);
+        assertEquals(1, list.size());
+        assertEquals(loc, list.get(0));
     }
 
     @Test
@@ -494,16 +576,80 @@ public class SuperheroDaoDBImplTest {
     //MEMBER TEST
     @Test
     void testAddMember(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        person = dao.addPerson(person);
+
+
+        Org org = new Org();
+        org.setName("Justice League");
+        org.setDescription("A Lot of heroes.");
+        org.setLocationId(1);
+        org = dao.addOrg(org);
+
+        Member m = new Member();
+        m.setOrgId(org.getId());
+        m.setPersonId(person.getId());
+        Member fromDao = dao.addMember(m);
+
+        assertEquals(m, fromDao);
 
     }
 
     @Test
     void testGetAllMembers(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        person = dao.addPerson(person);
 
+
+        Org org = new Org();
+        org.setName("Justice League");
+        org.setDescription("A Lot of heroes.");
+        org.setLocationId(1);
+        org = dao.addOrg(org);
+
+        Member m = new Member();
+        m.setOrgId(org.getId());
+        m.setPersonId(person.getId());
+        dao.addMember(m);
+        List<Member> list = dao.getAllMembers();
+
+        assertEquals(1, list.size());
+        assertEquals(m, list.get(0));
     }
 
     @Test
     void testDeleteMember(){
+        Person person = new Person();
+        person.setName("Super Man");
+        person.setDescription("Clark Kent");
+        person.setVillainHero(1);
+        person.setSuperpowerId(1);
+        person = dao.addPerson(person);
+
+
+        Org org = new Org();
+        org.setName("Justice League");
+        org.setDescription("A Lot of heroes.");
+        org.setLocationId(1);
+        org = dao.addOrg(org);
+
+        Member m = new Member();
+        m.setOrgId(org.getId());
+        m.setPersonId(person.getId());
+        dao.addMember(m);
+
+        dao.deleteMember(m);
+        List<Member> list = dao.getAllMembers();
+
+        assertEquals(0, list.size());
 
     }
 

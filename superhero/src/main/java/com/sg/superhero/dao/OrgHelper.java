@@ -60,7 +60,7 @@ public class OrgHelper {
     }
 
     public static boolean deleteOrg(Org org, JdbcTemplate jdbcTemplate) {
-        final String DELETE_ORG_MEMBER = "DELETE m.* FROM members m "
+        final String DELETE_ORG_MEMBER = "DELETE m.* FROM member m "
                 + "JOIN org o ON m.org = o.id WHERE o.id = ?";
         jdbcTemplate.update(DELETE_ORG_MEMBER, org.getId());
 
