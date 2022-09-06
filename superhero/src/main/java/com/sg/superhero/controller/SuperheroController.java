@@ -36,7 +36,9 @@ public class SuperheroController {
     @GetMapping("supers")
     public String displaySupers(Model model){
         List<Person> people = dao.getAllPeople();
+        List<Superpower> powers = dao.getAllSuperpowers();
         model.addAttribute("people", people);
+        model.addAttribute("powers", powers);
         return "supers";
     }
 
@@ -212,6 +214,8 @@ public class SuperheroController {
     @GetMapping("organizations")
     public String displayOrganization(Model model){
         List<Org> orgs = dao.getAllOrgs();
+        List<Location> locations = dao.getAllLocations();
+        model.addAttribute("locations", locations);
         model.addAttribute("orgs", orgs);
         return "organizations";
     }
@@ -283,12 +287,14 @@ public class SuperheroController {
     public String addSighting(HttpServletRequest request) {
         int person = Integer.parseInt(request.getParameter("person"));
         int location = Integer.parseInt(request.getParameter("location"));
-        LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(request.getParameter("date"), formatter);
+        LocalDateTime dateTime = date.atStartOfDay();
 
         Sighting sighting = new Sighting();
         sighting.setPersonId(person);
         sighting.setLocationId(location);
-        sighting.setDate(date);
+        sighting.setDate(dateTime);
 
         dao.addSighting(sighting);
 
@@ -331,6 +337,22 @@ public class SuperheroController {
         dao.updateSighting(sighting);
 
         return "redirect:/sightings";
+    }
+
+
+    /**
+     * HOME PAGE
+     */
+    @GetMapping()
+    public String displayIndex(Model model){
+        List<Sighting> sightings = dao.getAllSightings();
+        List<Person> people = dao.getAllPeople();
+        List<Location> locations = dao.getAllLocations();
+        model.addAttribute("sightings", sightings);
+        model.addAttribute("people", people);
+        model.addAttribute("locations", locations);
+
+        return "index";
     }
 
 }

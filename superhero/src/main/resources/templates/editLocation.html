@@ -76,9 +76,16 @@
                     </div>
                 </div>
                 <input type="hidden" name="id" th:value="${location.id}"/>
-                <button type="submit" class="btn btn-primary">
-                    Update Location
-                </button>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            Update Location
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="locations" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

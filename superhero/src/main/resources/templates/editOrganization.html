@@ -1,80 +1,87 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-  <title>Super Sighting Manager</title>
+    <title>Super Sighting Manager</title>
 </head>
 <body>
 <!-- Main Body of Page -->
 <div class="container">
-  <div class="row m-4">
-    <div class="col text-center border border-dark">
-      <h1>Super Sighting Manager</h1>
+    <div class="row m-4">
+        <div class="col text-center border border-dark">
+            <h1>Super Sighting Manager</h1>
+        </div>
     </div>
-  </div>
-  <div class="row m-4 border border-dark">
-    <div class="col text-center m-3">
-      <a href="supers" class="btn btn-outline-primary btn-lg">Supers</a>
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <a href="supers" class="btn btn-outline-primary btn-lg">Supers</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="powers" class="btn btn-outline-primary btn-lg">Powers</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+        </div>
     </div>
-    <div class="col text-center m-3">
-      <a href="powers" class="btn btn-outline-primary btn-lg">Powers</a>
-    </div>
-    <div class="col text-center m-3">
-      <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
-    </div>
-    <div class="col text-center m-3">
-      <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
-    </div>
-    <div class="col text-center m-3">
-      <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
-    </div>
-  </div>
 
-  <div class="row m-4 border border-dark">
-    <div class="col-3 text-center m-3">
-      <span class="h3">Edit Organization</span>
-    </div>
-    <div class="col-7 text-center m-3">
-      <form action="editOrganization" method="POST">
-        <div class="form-group row">
-          <label for="name" class="col-3 col-form-label">
-            First Name</label>
-          <div class="col-9">
-            <input type="text" name="name" id="name"
-                   class="form-control" th:value="${org.name}"/>
-          </div>
+    <div class="row m-4 border border-dark">
+        <div class="col-3 text-center m-3">
+            <span class="h3">Edit Organization</span>
         </div>
-        <div class="form-group row">
-          <label for="description" class="col-3 col-form-label">
-            Description</label>
-          <div class="col-9">
-            <input type="text" name="description" id="description"
-                   class="form-control" th:value="${org.description}"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="location" class="col-3 col-form-label">
-            Location</label>
-          <div class="col-9">
-            <input type="number" name="location" id="location"
-                   class="form-control" th:value="${org.locationId}"/>
-          </div>
-        </div>
+        <div class="col-7 text-center m-3">
+            <form action="editOrganization" method="POST">
+                <div class="form-group row">
+                    <label for="name" class="col-3 col-form-label">
+                        First Name</label>
+                    <div class="col-9">
+                        <input type="text" name="name" id="name"
+                               class="form-control" th:value="${org.name}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-3 col-form-label">
+                        Description</label>
+                    <div class="col-9">
+                        <input type="text" name="description" id="description"
+                               class="form-control" th:value="${org.description}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="location" class="col-3 col-form-label">
+                        Location</label>
+                    <div class="col-9">
+                        <input type="number" name="location" id="location"
+                               class="form-control" th:value="${org.locationId}"/>
+                    </div>
+                </div>
 
-        <input type="hidden" name="id" th:value="${org.id}"/>
-        <button type="submit" class="btn btn-primary">
-          Update Organization
-        </button>
-      </form>
+                <input type="hidden" name="id" th:value="${org.id}"/>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            Update Organizations
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="organizations" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 <!-- End main body -->
 

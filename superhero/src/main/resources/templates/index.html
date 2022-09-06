@@ -36,7 +36,33 @@
             <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
         </div>
     </div>
+
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Super</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sighting : ${sightings}">
+                    <td th:text="${sighting.personName}">Person Name</td>
+                    <td th:text="${sighting.locationId}">Sighting Location</td>
+                    <td th:text="${sighting.date}">Sighting Date</td>
+                    <td><a href="#" th:href="@{/editSighting(personId=${sighting.personId},locationId=${sighting.locationId})}">Edit</a></td>
+                    <td><a href="#" th:href="@{/deleteSighting(personId=${sighting.personId},locationId=${sighting.locationId})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
 <!-- End main body -->
 
 <!-- Optional JavaScript -->

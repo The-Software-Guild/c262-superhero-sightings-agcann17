@@ -54,9 +54,16 @@
 
                 <input type="hidden" name="personId" th:value="${sighting.personId}"/>
                 <input type="hidden" name="locationId" th:value="${sighting.locationId}"/>
-                <button type="submit" class="btn btn-primary">
-                    Update Sighting
-                </button>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            Update Sighting
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="sightings" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -80,9 +80,16 @@
                     </div>
                 </div>
                 <input type="hidden" name="id" th:value="${person.id}"/>
-                <button type="submit" class="btn btn-primary">
-                    Update Person
-                </button>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            Update Person
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="supers" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
