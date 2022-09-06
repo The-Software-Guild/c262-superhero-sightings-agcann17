@@ -28,7 +28,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
 
         Person fromDao = dao.addPerson(person);
@@ -43,14 +43,14 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
         Person person2 = new Person();
         person2.setName("Pac Man");
         person2.setDescription("Nom Nom");
-        person2.setVillainHero(1);
+        person2.setVillainHeroId(1);
         person2.setSuperpowerId(1);
         person2 = dao.addPerson(person2);
 
@@ -64,14 +64,14 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
         Person person2 = new Person();
         person2.setName("Pac Man");
         person2.setDescription("Nom Nom");
-        person2.setVillainHero(1);
+        person2.setVillainHeroId(1);
         person2.setSuperpowerId(1);
         person2 = dao.addPerson(person2);
 
@@ -86,7 +86,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         person = dao.addPerson(person);
 
@@ -112,7 +112,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -137,7 +137,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -155,7 +155,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -212,7 +212,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         person = dao.addPerson(person);
 
@@ -311,7 +311,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -431,7 +431,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -454,7 +454,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -478,7 +478,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -503,14 +503,14 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
         Person p2 = new Person();
         p2.setName("TEST");
         p2.setDescription("TEST");
-        p2.setVillainHero(1);
+        p2.setVillainHeroId(1);
         p2.setSuperpowerId(1);
         dao.addPerson(p2);
 
@@ -549,7 +549,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         dao.addPerson(person);
 
@@ -579,7 +579,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         person = dao.addPerson(person);
 
@@ -604,7 +604,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         person = dao.addPerson(person);
 
@@ -630,7 +630,7 @@ public class SuperheroDaoDBImplTest {
         Person person = new Person();
         person.setName("Super Man");
         person.setDescription("Clark Kent");
-        person.setVillainHero(1);
+        person.setVillainHeroId(1);
         person.setSuperpowerId(1);
         person = dao.addPerson(person);
 

@@ -3,6 +3,7 @@ package com.sg.superhero.controller;
 import com.sg.superhero.dao.SuperheroDao;
 import com.sg.superhero.dao.SuperheroDaoDBImpl;
 import com.sg.superhero.dto.Location;
+import com.sg.superhero.dto.Org;
 import com.sg.superhero.dto.Person;
 import com.sg.superhero.dto.Superpower;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
 public class SuperheroController {
 
     //TODO Update Supers Add/Edit page Superpower to drop down
+    //TODO Update Org Add/Edit page Location Dropdown
 
     @Autowired
     SuperheroDao dao;
@@ -201,6 +203,64 @@ public class SuperheroController {
         dao.updateLocation(loc);
 
         return "redirect:/locations";
+    }
+
+    /**
+     * Organization CRUD
+     */
+    @GetMapping("organizations")
+    public String displayOrganization(Model model){
+        List<Org> orgs = dao.getAllOrgs();
+        model.addAttribute("orgs", orgs);
+        return "organizations";
+    }
+
+    @PostMapping("addOrganization")
+    public String addOrganization(HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        int locationId = Integer.parseInt(request.getParameter("location"));
+
+        Org org = new Org();
+        org.setDescription(description);
+        org.setName(name);
+        org.setLocationId(locationId);
+
+        dao.addOrg(org);
+
+        return "redirect:/organizations";
+    }
+
+    @GetMapping("deleteOrganization")
+    public String deleteOrganization(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Org org = dao.getOrgById(id);
+        dao.deleteOrg(org);
+
+        return "redirect:/organizations";
+    }
+
+    @GetMapping("editOrganization")
+    public String editOrganization(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Org org = dao.getOrgById(id);
+
+        model.addAttribute("org", org);
+        return "editOrganization";
+    }
+
+    @PostMapping("editOrganization")
+    public String performEditOrganization(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Org org = dao.getOrgById(id);
+
+        org.setName(request.getParameter("name"));
+        org.setDescription(request.getParameter("description"));
+        org.setLocationId(Integer.parseInt(request.getParameter("location")));
+
+        dao.updateOrg(org);
+
+        return "redirect:/organizations";
     }
 
 

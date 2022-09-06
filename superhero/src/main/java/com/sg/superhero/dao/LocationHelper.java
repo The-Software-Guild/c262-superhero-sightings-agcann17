@@ -66,6 +66,10 @@ public class LocationHelper {
                 + "JOIN location l ON s.location = l.id WHERE l.id = ?";
         jdbcTemplate.update(DELETE_LOCATION_SIGHTING, loc.getId());
 
+        final String DELETE_ORG_LOCATION = "DELETE o.* FROM org o "
+                + "JOIN location l ON o.location = l.id WHERE l.id = ?";
+        jdbcTemplate.update(DELETE_ORG_LOCATION, loc.getId());
+
         final String DELETE_LOCATION = "DELETE FROM location WHERE id = ?";
         jdbcTemplate.update(DELETE_LOCATION, loc.getId());
 
